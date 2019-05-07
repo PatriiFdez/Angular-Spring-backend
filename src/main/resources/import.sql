@@ -23,3 +23,14 @@ INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(2, "
 INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(6, "Serena",  "Abrams", "serena@bolsadeideas.com","2018-12-31");
 INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(5, "Blair",  "Jackson", "blair@bolsadeideas.com","2018-12-31");
 INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(4, "Penelope",  "Garcia", "penelope@bolsadeideas.com","2018-12-31");
+
+INSERT INTO usuarios (id, username, password, enabled, nombre, apellido, email) VALUES (1, 'patri', '$2a$10$bmRzgsvIiOiKcj4ln6MmcekkEMJCPNESNnj3HpFsEsI0gxsn/cmbi', 1, 'Patri', 'Fernández', 'patri@bolsadeideas.com');
+INSERT INTO usuarios (id, username, password, enabled, nombre, apellido, email) VALUES (2, 'admin', '$2a$10$SArDn1.z6cnFYGjJ2m.obOnTzvDDtb.Ops.9o9aunbtiuasAV1.5K', 1, 'Administrador', 'Todopoderoso', 'admin@soporte.com');
+
+INSERT INTO roles (id, nombre) VALUES (1, 'ROLE_USER');
+INSERT INTO roles (id, nombre) VALUES (2, 'ROLE_ADMIN');
+
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (1, 1);
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 2);
+INSERT INTO usuarios_roles (usuario_id, role_id) VALUES (2, 1);
+

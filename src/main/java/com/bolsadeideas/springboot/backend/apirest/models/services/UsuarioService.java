@@ -19,7 +19,7 @@ import com.bolsadeideas.springboot.backend.apirest.models.dao.IUsuarioDao;
 import com.bolsadeideas.springboot.backend.apirest.models.entity.Usuario;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService implements IUsuarioService, UserDetailsService {
 
 	private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 	
@@ -32,7 +32,7 @@ public class UsuarioService implements UserDetailsService {
 		Usuario usuario = usuarioDao.findByUsername(username);
 		
 		if(usuario == null) {
-			logger.error("Error en el login: No existe el usuario " + username + " en el sistema !");
+			logger.error("Error en el login: No existe el usuario '" + username + "' en el sistema !");
 			throw new UsernameNotFoundException("Error en el login: no existe el usuario " + username + " en el sistema");
 		}
 		
@@ -43,6 +43,12 @@ public class UsuarioService implements UserDetailsService {
 				.collect(Collectors.toList());
 		
 		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true, authorities);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findByUsername(String username) {
+		return usuarioDao.findByUsername(username);
 	}
 
 }
